@@ -11,9 +11,17 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Test') { 
+        stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh' 
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh './jenkins/scripts/deliver.sh' 
+                script {
+                    sleep 60
+                }
             }
         }
     }
